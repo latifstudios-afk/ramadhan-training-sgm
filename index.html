@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#0b0820">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Somewhere">
+<title>Somewhere · Ramadan Training</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--gold1:#ffe87c;--gold2:#f2a726;--gold3:#c47d0e;--gold4:#7a4c08;--deep:#0b0820}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow-x:hidden}
+body{min-height:100vh;background:radial-gradient(ellipse at 15% 0%,#2a1060,#0b0820 55%,#06040f);font-family:'Outfit',sans-serif;padding:.8rem .8rem 3.5rem;position:relative}
+button{font-family:'Outfit',sans-serif;cursor:pointer;border:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:radial-gradient(1.5px 1.5px at 5% 8%,#fff,transparent),radial-gradient(2px 2px at 18% 22%,#ffd966,transparent),radial-gradient(1px 1px at 30% 5%,#fff,transparent),radial-gradient(2px 2px at 55% 15%,#d4b8ff,transparent),radial-gradient(3px 3px at 85% 10%,#ffd966,transparent),radial-gradient(2px 2px at 40% 80%,#fff,transparent),radial-gradient(2px 2px at 78% 85%,#fff,transparent);opacity:.7}
+.wrap{max-width:700px;margin:0 auto;position:relative;z-index:2}
+
+/* ── HEADER ── */
+.site-header{text-align:center;padding:.5rem 0 .3rem;position:relative}
+.header-logo{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap;filter:drop-shadow(0 16px 20px #000) drop-shadow(0 0 30px #ffd96622)}
+.pill-en{background:linear-gradient(150deg,#ffe680,#f2a726 45%,#c47a10);color:#2b1706;padding:.28rem 1.4rem;border-radius:60px;font-size:1.9rem;font-weight:900;letter-spacing:2px;box-shadow:0 10px 0 #7a4c08,0 13px 26px #000,0 0 0 2px #ffeaa0 inset;border-bottom:3px solid #fff3a0;text-shadow:0 2px 4px rgba(255,255,255,.3)}
+.pill-ar{background:linear-gradient(150deg,#d4af37,#b3772e 60%,#7a4e1a);color:#ffe8b0;padding:.28rem 1.2rem;border-radius:60px;font-size:1.9rem;font-weight:900;box-shadow:0 10px 0 #4a2e0a,0 13px 26px #000,0 0 0 2px #e8c060 inset;transform:rotate(1.5deg);border-bottom:3px solid #c89840}
+.tagline{color:#ffd96655;font-size:.75rem;font-weight:600;letter-spacing:2px;margin-top:.4rem}
+.at-galleria{color:#ffd966;font-weight:800;opacity:.8}
+.profile-btn{position:absolute;top:0;right:0;background:linear-gradient(145deg,#2a1860,#1a0f40);border:1.5px solid #4a3080;border-radius:50%;width:46px;height:46px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 6px 0 #0a0620,0 6px 12px #000;transition:.12s;position:absolute}
+.profile-btn:active{transform:translateY(4px);box-shadow:0 2px 0 #0a0620}
+.profile-dot{position:absolute;top:3px;right:3px;width:9px;height:9px;background:#ff6060;border-radius:50%;box-shadow:0 0 6px #ff6060;display:none}
+.profile-dot.show{display:block}
+
+/* ── LANG ── */
+.lang-row{display:flex;gap:.45rem;justify-content:center;margin:.65rem 0}
+.lang-btn{padding:.4rem 1rem;border-radius:40px;font-size:.88rem;font-weight:700;background:linear-gradient(145deg,#2a1b50,#1a0f35);color:#9070c0;border:2px solid #3a2560;box-shadow:0 6px 0 #0d0820,0 6px 10px #000;transition:.12s}
+.lang-btn.active{background:linear-gradient(145deg,#ffd966,#f2a726);color:#2b1706;border-color:#ffe080;box-shadow:0 6px 0 #7a4c08,0 8px 14px #000;transform:translateY(-2px)}
+.lang-btn:active{transform:translateY(4px)!important;box-shadow:0 2px 0 #0d0820!important}
+
+/* ── TABS ── */
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin:.65rem 0 .8rem}
+.tab-btn{padding:.75rem .2rem .55rem;border-radius:1.6rem;font-weight:800;transition:.12s;position:relative;overflow:hidden}
+.tab-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.2),transparent 60%);border-radius:inherit;pointer-events:none}
+.t-icon{font-size:1.5rem;display:block;margin-bottom:.15rem;filter:drop-shadow(0 3px 5px #000)}
+.t-label{font-size:.65rem;letter-spacing:1px;display:block}
+.tab-learn{background:linear-gradient(160deg,#5ba8ff,#2160cc);color:#c8e4ff;box-shadow:0 10px 0 #0e2d70,0 12px 18px #000;border:2px solid #6ab4ff}
+.tab-practice{background:linear-gradient(160deg,#a060ff,#5b1fa0);color:#e8d8ff;box-shadow:0 10px 0 #2d0d60,0 12px 18px #000;border:2px solid #b080ff}
+.tab-quiz{background:linear-gradient(160deg,#ffcc44,#dd8010);color:#fff7d0;box-shadow:0 10px 0 #6a3a00,0 12px 18px #000;border:2px solid #ffd966}
+.tab-staff{background:linear-gradient(160deg,#44cc88,#0d8040);color:#d0ffe8;box-shadow:0 10px 0 #054020,0 12px 18px #000;border:2px solid #44dd88}
+.tab-btn.active{transform:translateY(5px)!important;filter:brightness(1.2)}
+.tab-btn.active.tab-learn{box-shadow:0 4px 0 #0e2d70,0 5px 10px #000}
+.tab-btn.active.tab-practice{box-shadow:0 4px 0 #2d0d60,0 5px 10px #000}
+.tab-btn.active.tab-quiz{box-shadow:0 4px 0 #6a3a00,0 5px 10px #000}
+.tab-btn.active.tab-staff{box-shadow:0 4px 0 #054020,0 5px 10px #000}
+.tab-btn:active:not(.active){transform:translateY(6px)!important}
+
+/* ── PANEL ── */
+.panel{background:linear-gradient(160deg,rgba(30,18,55,.92),rgba(15,9,35,.96));backdrop-filter:blur(20px);border-radius:2.5rem;padding:1.2rem 1rem;border:1.5px solid rgba(255,210,100,.28);box-shadow:0 26px 42px -8px #000,10px 16px 26px -5px #000;position:relative;overflow:hidden}
+.panel::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#ffd96650,transparent)}
+
+/* ─────────────────────────────────────────
+   LEARN — 3D FLIP CARDS (grid layout)
+   KEY: display:grid on .flip-inner so both
+   faces share the same grid cell → container
+   always takes the tallest face = no overlap
+───────────────────────────────────────── */
+.learn-hint{text-align:center;color:#ffd98066;font-size:.82rem;font-weight:600;letter-spacing:1px;margin-bottom:.8rem}
+.sec-head{font-size:.7rem;font-weight:800;letter-spacing:2.5px;color:#ffd966;text-transform:uppercase;margin:1rem 0 .5rem .2rem;display:flex;align-items:center;gap:.5rem}
+.sec-head::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,#ffd96630,transparent)}
+.sec-icon{font-size:1rem;filter:drop-shadow(0 2px 4px #000)}
+
+.flip-wrap{perspective:1000px;margin-bottom:1rem;cursor:pointer}
+.flip-inner{
+  display:grid;                        /* ← grid keeps height = max(front,back) */
+  transform-style:preserve-3d;
+  transition:transform .6s cubic-bezier(.4,0,.2,1);
+  border-radius:1.6rem;
+}
+.flip-wrap.is-open .flip-inner{transform:rotateY(-180deg)}
+
+.flip-front,.flip-back{
+  grid-area:1/1;                       /* ← same grid cell, stacked */
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  border-radius:1.6rem;
+  padding:.95rem 1.1rem;
+  border:2px solid #fec978;
+}
+.flip-front{
+  background:linear-gradient(145deg,#fff8ec,#fce9d2);
+  box-shadow:0 10px 0 #a07038,0 12px 18px -4px #000,0 2px 0 2px #fde8c5 inset;
+  display:flex;justify-content:space-between;align-items:center;
+  position:relative;overflow:hidden;
+}
+.flip-front::after{content:'';position:absolute;top:0;left:0;right:0;height:40%;background:linear-gradient(180deg,rgba(255,255,255,.28),transparent);pointer-events:none;border-radius:inherit}
+.flip-back{
+  background:linear-gradient(145deg,#1b4a1a,#0e3010);
+  box-shadow:0 10px 0 #082008,0 12px 18px -4px #000,0 2px 0 2px #3a7038 inset;
+  border-color:#3a8038;color:#c8f0c0;
+  transform:rotateY(180deg);
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.flip-back::after{content:'';position:absolute;top:0;left:0;right:0;height:40%;background:linear-gradient(180deg,rgba(255,255,255,.1),transparent);pointer-events:none;border-radius:inherit}
+
+/* front — single language name */
+.d-name{font-size:1.05rem;font-weight:800;color:#2b1706;line-height:1.3}
+.flip-hint{font-size:.75rem;color:#b08040;font-weight:700;opacity:.75;margin-left:.7rem;white-space:nowrap;flex-shrink:0;transition:.3s}
+.flip-wrap.is-open .flip-hint{opacity:0}
+
+/* back — full info */
+.back-name{font-size:.95rem;font-weight:800;color:#7fff7a;margin-bottom:.45rem;text-shadow:0 0 10px #00ff0030;position:relative;z-index:1;display:flex;align-items:center;gap:.4rem}
+.back-desc{font-size:.88rem;line-height:1.55;color:#b8e8b0;font-weight:600;position:relative;z-index:1}
+.back-foot{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.55rem;position:relative;z-index:1}
+.back-tag{background:rgba(255,255,255,.08);color:#80c880;font-size:.7rem;font-weight:700;padding:.17rem .5rem;border-radius:18px;border:1px solid rgba(255,255,255,.1)}
+.back-price{background:linear-gradient(145deg,#ffd966,#f2a726);color:#2b1000;box-shadow:0 3px 0 #8a5a10;border:none;font-size:.78rem}
+
+/* ── PRACTICE ── */
+.prac-counter{text-align:center;color:#ffd98066;font-size:.92rem;font-weight:700;margin-bottom:.45rem;letter-spacing:1px}
+.prac-prog{height:10px;background:rgba(255,255,255,.07);border-radius:10px;margin-bottom:1rem;overflow:hidden;box-shadow:0 2px 5px #000 inset}
+.prac-prog-fill{height:100%;border-radius:10px;transition:.4s cubic-bezier(.4,0,.2,1);background:linear-gradient(90deg,#8040ff,#ffd966,#f2a726);box-shadow:0 0 10px #ffd96544}
+
+/* Practice flashcard — same grid trick */
+.fc-card{perspective:1200px;margin-bottom:1rem;cursor:pointer}
+.fc-inner{
+  display:grid;
+  transform-style:preserve-3d;
+  transition:transform .6s cubic-bezier(.4,0,.2,1);
+  border-radius:2rem;
+}
+.fc-card.flipped .fc-inner{transform:rotateY(-180deg)}
+.fc-f,.fc-b{
+  grid-area:1/1;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  border-radius:2rem;padding:1.8rem 1.4rem;
+  min-height:185px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+}
+.fc-f{
+  background:linear-gradient(145deg,#fff8ec,#fce9d2);
+  box-shadow:0 15px 0 #a07038,0 18px 26px -6px #000;
+  border:2px solid #fec978;color:#1f1308;position:relative;overflow:hidden;
+}
+.fc-f::after{content:'';position:absolute;top:0;left:0;right:0;height:45%;background:linear-gradient(180deg,rgba(255,255,255,.3),transparent);pointer-events:none;border-radius:inherit}
+.fc-b{
+  background:linear-gradient(145deg,#1a1060,#2a1880);
+  box-shadow:0 15px 0 #0a0830,0 18px 26px -6px #000;
+  border:2px solid #6040a0;color:#d8c8ff;
+  transform:rotateY(180deg);overflow:hidden;position:relative;
+}
+.fc-b::after{content:'';position:absolute;top:0;left:0;right:0;height:40%;background:linear-gradient(180deg,rgba(255,255,255,.1),transparent);pointer-events:none;border-radius:inherit}
+.fc-name{font-size:1.5rem;font-weight:900;color:#2b1706;line-height:1.2;position:relative;z-index:1}
+.fc-tap{font-size:.78rem;color:#c09050;margin-top:.9rem;font-weight:600;letter-spacing:1px;animation:pulse 2s infinite;position:relative;z-index:1}
+@keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
+.fc-b-name{font-size:1.05rem;font-weight:800;color:#c8a8ff;margin-bottom:.5rem;text-shadow:0 0 12px #a060ff66;position:relative;z-index:1}
+.fc-b-desc{font-size:.9rem;line-height:1.5;color:#d0c0f8;font-weight:500;position:relative;z-index:1}
+.fc-b-price{margin-top:.7rem;z-index:1;background:linear-gradient(145deg,#ffd966,#f2a726);color:#2b1000;padding:.25rem .85rem;border-radius:30px;font-size:.85rem;font-weight:800;box-shadow:0 4px 0 #8a5a10;display:inline-block;position:relative}
+.prac-nav{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.prac-btn{padding:.9rem;border-radius:1.5rem;font-size:.9rem;font-weight:800;transition:.1s;letter-spacing:1px}
+.prac-prev{background:linear-gradient(145deg,#4a3080,#2a1860);color:#c8b0ff;box-shadow:0 8px 0 #150c30,0 10px 14px #000;border:2px solid #6040a0}
+.prac-next{background:linear-gradient(145deg,#ffd966,#f2a726);color:#2b1706;box-shadow:0 8px 0 #7a4c08,0 10px 14px #000;border:2px solid #ffe080}
+.prac-btn:active{transform:translateY(5px)!important;box-shadow:0 3px 0 #000!important}
+
+/* ── QUIZ ── */
+.quiz-hdr{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(145deg,#2a1860,#1a0f40);padding:.7rem 1rem;border-radius:50px;margin-bottom:1rem;box-shadow:0 8px 0 #0a0620,0 10px 16px #000;border:1.5px solid #4a3080}
+.q-score{background:linear-gradient(145deg,#ffd966,#f2a726);color:#2b1706;padding:.35rem 1.1rem;border-radius:40px;font-size:1.1rem;font-weight:800;box-shadow:0 5px 0 #7a4c08}
+.q-reset{background:linear-gradient(145deg,#ff6666,#cc2222);color:#fff;font-size:1.4rem;width:42px;height:42px;border-radius:50%;box-shadow:0 5px 0 #800000;display:flex;align-items:center;justify-content:center;transition:.1s}
+.q-reset:active{transform:translateY(3px);box-shadow:0 2px 0 #800000}
+.q-count{background:rgba(255,255,255,.05);color:#a080d0;padding:.35rem .9rem;border-radius:30px;font-weight:700;font-size:.82rem;border:1px solid #3a2570}
+.q-desc{background:linear-gradient(145deg,#fff8ec,#fce9d2);border:2px solid #d79f5f;border-radius:1.8rem;padding:1.3rem;margin-bottom:1rem;font-size:1rem;font-weight:700;color:#281f10;text-align:center;min-height:110px;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 0 #a2662f,0 14px 20px -5px #000,0 3px 0 3px #fcefd0 inset,0 -3px 0 3px #dcaa6d inset;line-height:1.5;transform:perspective(600px) rotateX(1.5deg)}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:.8rem}
+.opt{background:linear-gradient(145deg,#2a1860,#1a0f40);border:2px solid #4a3080;border-radius:1.5rem;padding:.9rem .6rem;font-size:.92rem;font-weight:700;color:#c8b0ff;box-shadow:0 8px 0 #0a0620,0 9px 14px #000;transition:.12s;text-align:center;word-break:break-word;position:relative;overflow:hidden}
+.opt::after{content:'';position:absolute;top:0;left:0;right:0;height:40%;background:linear-gradient(180deg,rgba(255,255,255,.1),transparent);pointer-events:none}
+.opt:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 11px 0 #0a0620,0 12px 18px #000;border-color:#8060c0}
+.opt:active:not(:disabled){transform:translateY(4px);box-shadow:0 4px 0 #0a0620}
+.opt.correct{background:linear-gradient(145deg,#1a5a18,#0f3a0d);color:#80ff80;border-color:#3a8a38;box-shadow:0 8px 0 #061806,0 9px 14px #000}
+.opt.wrong{background:linear-gradient(145deg,#5a1818,#3a0d0d);color:#ff8080;border-color:#8a3838;box-shadow:0 8px 0 #1a0606;text-decoration:line-through}
+.opt:disabled{cursor:not-allowed;transform:translateY(3px);box-shadow:0 4px 0 #0a0620}
+.feedback{min-height:2.6rem;text-align:center;font-size:1.2rem;font-weight:800;padding:.42rem;border-radius:50px;background:rgba(0,0,0,.5);border:1.5px solid #4a3080;color:#ffd966;text-shadow:0 0 16px #ffd966;margin-bottom:.75rem;box-shadow:0 5px 0 #0a0620}
+.next-btn{background:linear-gradient(145deg,#ffd966,#f2a726,#c47d0e);color:#1f1407;font-size:1.2rem;font-weight:900;padding:.9rem;border-radius:50px;width:100%;box-shadow:0 12px 0 #7a4c08,0 14px 20px -5px #000;letter-spacing:2px;border:2px solid #ffe080;transform:translateY(-3px);transition:.1s;position:relative;overflow:hidden}
+.next-btn::after{content:'';position:absolute;top:0;left:0;right:0;height:45%;background:linear-gradient(180deg,rgba(255,255,255,.28),transparent);pointer-events:none}
+.next-btn:disabled{opacity:.35;transform:translateY(4px);pointer-events:none;box-shadow:0 7px 0 #7a4c08}
+.next-btn:active:not(:disabled){transform:translateY(4px);box-shadow:0 7px 0 #7a4c08}
+
+/* ── STAFF PANEL ── */
+.staff-name-card{background:linear-gradient(145deg,#2a1860,#1a0f40);border:1.5px solid #4a3080;border-radius:2rem;padding:1.2rem;margin-bottom:1rem;box-shadow:0 10px 0 #0a0620,0 12px 18px #000;text-align:center}
+.staff-avatar{font-size:3.5rem;display:block;filter:drop-shadow(0 4px 8px #000);margin-bottom:.4rem;cursor:pointer;transition:.15s}
+.staff-avatar:active{transform:scale(.9)}
+.staff-sname{font-size:1.3rem;font-weight:800;color:#ffd966}
+.staff-since{font-size:.76rem;color:#6050a0;margin-top:.18rem}
+.staff-edit-btn{margin-top:.65rem;background:rgba(255,255,255,.07);border:1px solid #4a3080;color:#9080c0;font-size:.8rem;font-weight:700;padding:.38rem .9rem;border-radius:30px}
+.stats-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;margin-bottom:1rem}
+.stat-card{background:linear-gradient(145deg,#2a1860,#1a0f40);border:1.5px solid #3a2570;border-radius:1.5rem;padding:.9rem .4rem;text-align:center;box-shadow:0 6px 0 #0a0620}
+.stat-val{font-size:1.5rem;font-weight:900;color:#ffd966;display:block}
+.stat-lbl{font-size:.66rem;color:#8070b0;font-weight:600;letter-spacing:.5px;margin-top:.12rem;display:block}
+.history-title{font-size:.7rem;font-weight:800;letter-spacing:2px;color:#ffd966;text-transform:uppercase;margin:.2rem 0 .55rem;opacity:.8}
+.session-list{display:flex;flex-direction:column;gap:.45rem;max-height:240px;overflow-y:auto}
+.session-item{background:rgba(255,255,255,.04);border:1px solid #3a2570;border-radius:1rem;padding:.6rem .85rem;display:flex;justify-content:space-between;align-items:center}
+.sess-date{font-size:.73rem;color:#7060a0;font-weight:600}
+.sess-score{font-size:.95rem;font-weight:800}
+.sess-score.good{color:#80ff80}.sess-score.ok{color:#ffd966}.sess-score.low{color:#ff8080}
+.sess-lang{font-size:.66rem;background:rgba(255,255,255,.06);color:#9080c0;padding:.1rem .4rem;border-radius:10px;font-weight:600;margin-top:.18rem;display:inline-block}
+.no-history{text-align:center;color:#5040a0;font-size:.88rem;padding:1.4rem 0;font-weight:600}
+.clear-btn{width:100%;margin-top:.8rem;background:linear-gradient(145deg,#5a1818,#3a0d0d);border:1px solid #8a3838;color:#ff8080;font-size:.8rem;font-weight:700;padding:.52rem;border-radius:30px;box-shadow:0 4px 0 #1a0606}
+.clear-btn:active{transform:translateY(3px);box-shadow:0 1px 0 #1a0606}
+
+/* ── AVATAR PICKER ── */
+.avatar-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:.5rem;margin:.8rem 0}
+.av-opt{font-size:2rem;background:rgba(255,255,255,.05);border:2px solid transparent;border-radius:1rem;padding:.4rem;text-align:center;cursor:pointer;transition:.12s;filter:drop-shadow(0 2px 4px #000)}
+.av-opt:active{transform:scale(.88)}
+.av-opt.selected{border-color:#ffd966;background:rgba(255,215,102,.12);box-shadow:0 0 12px #ffd96644}
+
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:100;display:flex;align-items:center;justify-content:center;padding:1.5rem;backdrop-filter:blur(8px)}
+.modal-overlay.hidden{display:none}
+.modal-box{background:linear-gradient(160deg,#1e1235,#0f0920);border:1.5px solid #ffd48a;border-radius:2.5rem;padding:1.8rem 1.4rem;width:100%;max-width:380px;box-shadow:0 30px 50px -10px #000,0 0 40px -10px #ffd96633}
+.modal-title{font-size:1.3rem;font-weight:800;color:#ffd966;text-align:center;margin-bottom:.3rem;text-shadow:0 0 15px #ffd96555}
+.modal-sub{font-size:.86rem;color:#a080d0;text-align:center;margin-bottom:1.2rem}
+.modal-input{width:100%;background:rgba(255,255,255,.06);border:1.5px solid #4a3080;border-radius:1rem;padding:.85rem 1rem;font-size:1rem;font-weight:700;color:#fff;font-family:'Outfit',sans-serif;outline:none;margin-bottom:.4rem}
+.modal-input:focus{border-color:#8060c0;box-shadow:0 0 0 3px #6040a020}
+.modal-input::placeholder{color:#6050a0}
+.modal-save{width:100%;background:linear-gradient(145deg,#ffd966,#f2a726);color:#1f1407;font-size:1.05rem;font-weight:800;padding:.82rem;border-radius:1rem;box-shadow:0 8px 0 #7a4c08,0 10px 16px #000;letter-spacing:1px;margin-top:.4rem;transition:.1s}
+.modal-save:active{transform:translateY(4px);box-shadow:0 4px 0 #7a4c08}
+.modal-cancel{width:100%;background:transparent;color:#6050a0;font-size:.86rem;font-weight:600;padding:.55rem;border-radius:1rem;margin-top:.35rem}
+
+/* ── FOOTER ── */
+.footer{text-align:center;margin-top:1.4rem;padding-bottom:.3rem}
+.footer-ls{font-size:1rem;font-weight:900;color:#ffd96630;letter-spacing:4px}
+
+@media(max-width:400px){
+  .opts{grid-template-columns:1fr}
+  .pill-en,.pill-ar{font-size:1.55rem;padding:.22rem .85rem}
+  .t-label{font-size:.58rem}
+  .avatar-grid{grid-template-columns:repeat(5,1fr)}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div class="site-header">
+    <button class="profile-btn" onclick="openModal('profile')" id="profileBtn">
+      <span id="headerAvatar">👤</span>
+      <div class="profile-dot" id="profileDot"></div>
+    </button>
+    <div class="header-logo">
+      <span class="pill-en">SOMEWHERE</span>
+      <span class="pill-ar">رمضان</span>
+    </div>
+    <div class="tagline"><span class="at-galleria">at Galleria</span> · Ramadan Staff Training</div>
+  </div>
+
+  <!-- LANGUAGE TOGGLE -->
+  <div class="lang-row">
+    <button class="lang-btn active" onclick="setLang('en')">🇬🇧 English</button>
+    <button class="lang-btn" onclick="setLang('ar')">🇦🇪 عربي</button>
+    <button class="lang-btn" onclick="setLang('hi')">🇮🇳 हिन्दी</button>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab-btn tab-learn active" onclick="showTab('learn')"><span class="t-icon">📚</span><span class="t-label">LEARN</span></button>
+    <button class="tab-btn tab-practice" onclick="showTab('practice')"><span class="t-icon">🃏</span><span class="t-label">PRACTICE</span></button>
+    <button class="tab-btn tab-quiz" onclick="showTab('quiz')"><span class="t-icon">🎯</span><span class="t-label">QUIZ</span></button>
+    <button class="tab-btn tab-staff" onclick="showTab('staff')"><span class="t-icon">🏅</span><span class="t-label">STAFF</span></button>
+  </div>
+
+  <!-- LEARN -->
+  <div id="panel-learn" class="panel">
+    <div class="learn-hint" id="learnHint">👇 Tap any dish to flip and reveal</div>
+    <div id="learnGrid"></div>
+  </div>
+
+  <!-- PRACTICE -->
+  <div id="panel-practice" class="panel" style="display:none">
+    <div class="prac-counter"><span id="pcCur">1</span> / <span id="pcTotal">20</span></div>
+    <div class="prac-prog"><div class="prac-prog-fill" id="pcBar" style="width:5%"></div></div>
+    <div class="fc-card" id="fcCard" onclick="flipFC()">
+      <div class="fc-inner">
+        <div class="fc-f">
+          <div class="fc-name" id="fcName"></div>
+          <div class="fc-tap">✨ TAP TO REVEAL ✨</div>
+        </div>
+        <div class="fc-b">
+          <div class="fc-b-name" id="fcBName"></div>
+          <div class="fc-b-desc" id="fcBDesc"></div>
+          <div class="fc-b-price" id="fcBPrice" style="display:none"></div>
+        </div>
+      </div>
+    </div>
+    <div class="prac-nav">
+      <button class="prac-btn prac-prev" onclick="pcNav(-1)">◀ PREV</button>
+      <button class="prac-btn prac-next" onclick="pcNav(1)">NEXT ▶</button>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="panel-quiz" class="panel" style="display:none">
+    <div class="quiz-hdr">
+      <div class="q-score">⭐ <span id="qScore">0</span></div>
+      <button class="q-reset" onclick="resetQuiz()">↻</button>
+      <div class="q-count" id="qCount">🍽️ 20 items</div>
+    </div>
+    <div class="q-desc" id="qDesc"></div>
+    <div class="opts" id="qOpts"></div>
+    <div class="feedback" id="qFeedback"></div>
+    <button class="next-btn" id="qNext" onclick="loadQuestion()">🚀 <span id="nextLabel">START QUIZ</span> 🚀</button>
+  </div>
+
+  <!-- STAFF -->
+  <div id="panel-staff" class="panel" style="display:none">
+    <div class="staff-name-card">
+      <span class="staff-avatar" id="staffAvatar" onclick="openModal('avatar')" title="Tap to change avatar">🐱</span>
+      <div class="staff-sname" id="staffNameDisplay">—</div>
+      <div class="staff-since" id="staffSince"></div>
+      <button class="staff-edit-btn" onclick="openModal('edit')">✏️ Edit Name</button>
+    </div>
+    <div class="stats-row">
+      <div class="stat-card"><span class="stat-val" id="statTotal">0</span><span class="stat-lbl">Quizzes</span></div>
+      <div class="stat-card"><span class="stat-val" id="statBest">—</span><span class="stat-lbl">Best Score</span></div>
+      <div class="stat-card"><span class="stat-val" id="statAvg">—</span><span class="stat-lbl">Average</span></div>
+    </div>
+    <div class="history-title">📋 Recent Sessions</div>
+    <div class="session-list" id="sessionList"></div>
+    <button class="clear-btn" onclick="clearHistory()">🗑️ Clear My History</button>
+  </div>
+
+  <div class="footer"><div class="footer-ls">LS</div></div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay hidden" id="modalOverlay">
+  <div class="modal-box">
+    <div class="modal-title" id="modalTitle">👋 Welcome!</div>
+    <div class="modal-sub" id="modalSub">Enter your name to track your training progress</div>
+    <div id="modalNameSection">
+      <input class="modal-input" id="modalInput" type="text" placeholder="Your name..." maxlength="30" autocomplete="off">
+    </div>
+    <div id="modalAvatarSection" style="display:none">
+      <div class="avatar-grid" id="avatarGrid"></div>
+    </div>
+    <button class="modal-save" id="modalSaveBtn" onclick="modalSave()">Save & Continue →</button>
+    <button class="modal-cancel" id="modalCancelBtn" onclick="closeModal()" style="display:none">Cancel</button>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+//   MENU DATA — word-for-word from official PDF
+// ══════════════════════════════════════════════
+const items = [
+  /* FROM THE OVEN */
+  {en:"Wagyu Baajine",ar:"واجيو بعجين",hi:"वागयू बाजीन",
+   descEn:"Wagyu minced beef baked flatbread drizzled with zesty pomegranate molasses. Served in sourdough or thin crust.",
+   descAr:"لحم الواجيو المفروم مخبوز فوق طبقة من الخبز، مزين بدبس الرمان الحامض. يقدم بالعجين المخمر أو الخبز الرقيق.",
+   descHi:"ज़ायकेदार अनार की चाशनी के साथ वागयू कीमा बीफ का बेक्ड फ्लैटब्रेड। खट्टे आटे या पतली परत में परोसा जाता है।",
+   cat:"From The Oven"},
+  {en:"Sabanekh Calzone",ar:"كالزوني سبانخ",hi:"सबानेख कैलज़ोन",
+   descEn:"Spinach ricotta mixed cheese calzone, sesame with Shatta.",
+   descAr:"خليط سبانخ وجبنة ريكوتا داخل كالزوني مع سمسم وشطة.",
+   descHi:"पालक रिकोटा मिश्रित चीज़ कैलज़ोन, तिल और शाटा के साथ।",
+   cat:"From The Oven"},
+  {en:"Shatta Cheese",ar:"جبنة بالشطة",hi:"शाटा चीज़",
+   descEn:"Mixed cheese enclosed manakish topped with Shatta drizzle, sesame, and fresh Zaatar leaves.",
+   descAr:"مناقيش مع مزيج الجبن مزينة بصوص الشطة والسمسم وأوراق الزعتر الطازجة.",
+   descHi:"मिश्रित चीज़ से भरी मनाकीश जिसपर शाटा, तिल और ताज़ा ज़ातार की पत्तियाँ हैं।",
+   cat:"From The Oven"},
+  {en:"Avocado Focaccia",ar:"فوكاشيا أفوكادو",hi:"एवोकाडो फोकाशिया",
+   descEn:"Homemade focaccia topped with Labneh, avo mix, wild Zaatar and dried pomegranate zershik.",
+   descAr:"خليط لبنة وأفوكادو مع زعتر بري فوق خبز الفوكاشيا المخبوز في سموير مزين بزرشك الرمان المجفف.",
+   descHi:"घर में बनी फोकाशिया जिसपर लबनेह, एवोकाडो मिश्रण, जंगली ज़ातार और सूखी अनार ज़ेरशिक है।",
+   cat:"From The Oven"},
+  {en:"Jebne Turkey",ar:"جبنة تركي",hi:"जेब्ने टर्की",
+   descEn:"Flatbread topped with mixed cheese, smoked turkey, baked eggs and bechamel sauce.",
+   descAr:"شرائح الخبز المغطاة بمزيج الجبن، تركي مدخن، بيض مخبوز في الفرن وصوص البشاميل.",
+   descHi:"मिश्रित चीज़, स्मोक्ड टर्की, बेक्ड अंडे और बेशामेल सॉस के साथ फ्लैटब्रेड।",
+   cat:"From The Oven"},
+  {en:"Noss Noss",ar:"نص نص",hi:"नॉस नॉस",
+   descEn:"Flatbread topped with cheese and Zaatar.",
+   descAr:"جبنة وزعتر فوق شرائح الخبز.",
+   descHi:"चीज़ और ज़ातार से बना फ्लैटब्रेड।",
+   cat:"From The Oven"},
+  /* TO SHARE */
+  {en:"Lentil Soup",ar:"شوربة العدس",hi:"मसूर का सूप",
+   descEn:"Red lentils with leeks, carrots, cumin and a hint of citrus.",
+   descAr:"عدس أحمر مع الكراث، الجزر، الكمون ولمسة من الحمضيات.",
+   descHi:"लाल मसूर, लीक, गाजर, जीरा और खट्टेपन के साथ।",
+   cat:"To Share"},
+  {en:"Nachos Chicken Fattoush",ar:"فتوش دجاج الناتشوز",hi:"नाचोज़ चिकन फत्तूश",
+   descEn:"Chicken shawarma with crispy fattoush, tomatoes, labneh, and nacho chips.",
+   descAr:"شاورما دجاج مع فتوش، طماطم، لبنة والناتشوز.",
+   descHi:"चिकन शावर्मा के साथ क्रिस्पी फत्तूश, टमाटर, लबनेह और नाचो चिप्स।",
+   cat:"To Share",price:"63 AED"},
+  {en:"Beetroot Hummus Kubba",ar:"كبة حمص الشمندر",hi:"चुकंदर हम्मस कुब्बा",
+   descEn:"Kubbah filled with beetroot hummus, topped with crispy beetroot, sumac, and pomegranate.",
+   descAr:"كبة الشمندر، مغطاة بشرائح شمندر مقرمشة، سماق ورمان.",
+   descHi:"चुकंदर हम्मस से भरी कुब्बाह, जिसपर क्रिस्पी चुकंदर, सुमैक और अनार है।",
+   cat:"To Share",price:"43 AED"},
+  {en:"Crispy Chicken Roll Fatteh",ar:"فتة الدجاج",hi:"क्रिस्पी चिकन रोल फत्ते",
+   descEn:"Chicken roll over chickpeas and yogurt, finished with pomegranate molasses and sumac.",
+   descAr:"لفائف مسخن دجاج فوق الحمص واللبن، دبس الرمان والسماق.",
+   descHi:"चने और दही के ऊपर चिकन रोल, अनार की चटनी और सुमैक के साथ।",
+   cat:"To Share",price:"63 AED"},
+  {en:"Mixed Fatayer",ar:"فطاير مشكلة",hi:"मिश्रित फताएर",
+   descEn:"Beef roll, kunafa cheese roll, cheese zaatar sambosa, and spinach fatayer.",
+   descAr:"لفائف لحم، لفائف كنافة بالجبنة، سمبوسك جبنة بالزعتر وفطاير سبانخ.",
+   descHi:"बीफ रोल, कुनाफा चीज़ रोल, चीज़ ज़ातार समबोसा और पालक फताएर।",
+   cat:"To Share",price:"65 AED"},
+  {en:"Zaatar Stracciatella Flatbread",ar:"خبز بالزعتر وبوراتا",hi:"ज़ातार स्ट्रेचियातेला फ्लैटब्रेड",
+   descEn:"Crisp flatbread with zaatar, stracciatella, olive oil, and herbs.",
+   descAr:"خبز مع الزعتر، ستراشاتيلا، زيت الزيتون والأعشاب.",
+   descHi:"ज़ातार, स्ट्रेचियातेला, जैतून का तेल और जड़ी-बूटियों के साथ क्रिस्प फ्लैटब्रेड।",
+   cat:"To Share",price:"75 AED"},
+  {en:"Lahm bi Ajin Mille Feuille",ar:"لحم بعجين",hi:"लहम बी अजीन मिल फोई",
+   descEn:"Puff pastry layered with spiced beef, labneh, paprika, mint, and pomegranate molasses.",
+   descAr:"عجينة بطبقات من اللحم المتبل، لبنة، بابريكا، نعناع ودبس الرمان.",
+   descHi:"मसालेदार बीफ, लबनेह, पेपरिका, पुदीना और अनार की चटनी से बनी पफ पेस्ट्री।",
+   cat:"To Share",price:"71 AED"},
+  {en:"Hummus Beans",ar:"حمص حب",hi:"हम्मस बीन्स",
+   descEn:"Hummus Beans.",
+   descAr:"حمص حب.",
+   descHi:"हम्मस बीन्स।",
+   cat:"To Share",price:"35 AED"},
+  {en:"Labneh Zaatar",ar:"لبنة زعتر",hi:"लबनेह ज़ातार",
+   descEn:"Labneh Zaatar.",
+   descAr:"لبنة زعتر.",
+   descHi:"लबनेह ज़ातार।",
+   cat:"To Share",price:"35 AED"},
+  /* POTS */
+  {en:"Shish Kharouf",ar:"شيش خروف",hi:"शीश खरूफ",
+   descEn:"Shredded lamb in yogurt with onions, pine nuts, and mint, served with vermicelli rice.",
+   descAr:"لحم خروف في لبن ومع بصل مقلي، صنوبر مقلي، وخلطة النعناع والثوم، يقدم مع أرز الشعيرية.",
+   descHi:"दही में कटा मेमना, प्याज़, पाइन नट्स और पुदीना, वर्मीसेली चावल के साथ।",
+   cat:"Pots",price:"97 AED"},
+  {en:"Kharouf Bil Shabat",ar:"خروف بالشبث",hi:"खरूफ बिल शबात",
+   descEn:"Slow-cooked lamb shank on dill green rice.",
+   descAr:"لحم خروف مطهو ببطء يقدم فوق أرز بالشبت العطري.",
+   descHi:"डिल हरे चावल पर धीमी आंच पर पका मेमने का शैंक।",
+   cat:"Pots",price:"119 AED"},
+  {en:"Lamb Zaatar",ar:"لحم بالزعتر",hi:"लैम्ब ज़ातार",
+   descEn:"Crusted lamb cutlets with zaatar, parmesan, and pistachio gremolata over laban fatteh.",
+   descAr:"ريش لحم مغطاة بالزعتر، بارميزان والفستق، تقدم مع فتة اللبن.",
+   descHi:"ज़ातार, परमेज़ान और पिस्ता ग्रेमोलाटा के साथ क्रस्टेड मेमने के कटलेट, लबन फत्ते पर।",
+   cat:"Pots",price:"125 AED"},
+  {en:"Green Zaatar Taouk",ar:"طاووق الزعتر",hi:"ग्रीन ज़ातार तावूक",
+   descEn:"Herb-marinated chicken, grilled juicy with parsley, mint, zaatar, and lemon.",
+   descAr:"دجاج متبل بالأعشاب، مشوي مع البقدونس، النعناع، الزعتر والليمون.",
+   descHi:"जड़ी-बूटियों में मैरीनेट किया हुआ चिकन, अजमोद, पुदीना, ज़ातार और नींबू के साथ रसीला ग्रिल्ड।",
+   cat:"Pots",price:"89 AED"},
+  /* SWEET */
+  {en:"Kunafa Fustaqia",ar:"كنافة فستقية",hi:"कुनाफा फुस्ताकिया",
+   descEn:"Golden crispy kunafa with cheese and crushed pistachios.",
+   descAr:"كنافة بالجبنة ومغطاة بالفستق.",
+   descHi:"चीज़ और कुटे हुए पिस्ते के साथ सुनहरी कुरकुरी कुनाफा।",
+   cat:"Sweet",price:"65 AED"}
+];
+
+const catIcons={"From The Oven":"🔥","To Share":"🤝","Pots":"🍲","Sweet":"🍮"};
+const catOrder=["From The Oven","To Share","Pots","Sweet"];
+const ANIMALS=['🐱','🐶','🐰','🐹','🦊','🐻','🐼','🐨','🦁','🐯','🐮','🐷','🐸','🐙','🦋','🦜','🐧','🦩','🐢','🦔','🐝','🦄','🐬','🦭'];
+
+// ── STORAGE ──
+const SK={profile:'sg_staff_profile',sessions:'sg_quiz_sessions'};
+function getProfile(){try{return JSON.parse(localStorage.getItem(SK.profile))||null}catch{return null}}
+function saveProfile(p){localStorage.setItem(SK.profile,JSON.stringify(p))}
+function getSessions(){try{return JSON.parse(localStorage.getItem(SK.sessions))||[]}catch{return[]}}
+function addSession(s){const a=getSessions();a.unshift(s);if(a.length>50)a.length=50;localStorage.setItem(SK.sessions,JSON.stringify(a))}
+function clearSessions(){localStorage.removeItem(SK.sessions)}
+
+// ── MODAL ──
+let modalMode='profile';
+let tempAvatar='';
+function openModal(mode){
+  modalMode=mode;
+  const ov=document.getElementById('modalOverlay');
+  const ns=document.getElementById('modalNameSection');
+  const as=document.getElementById('modalAvatarSection');
+  const ti=document.getElementById('modalTitle');
+  const su=document.getElementById('modalSub');
+  const cb=document.getElementById('modalCancelBtn');
+  const inp=document.getElementById('modalInput');
+  ov.classList.remove('hidden');
+  if(mode==='avatar'){
+    ti.textContent='🐾 Choose Your Avatar';
+    su.textContent='Pick an animal that represents you!';
+    ns.style.display='none';as.style.display='block';
+    buildAvatarGrid();
+    cb.style.display='block';
+  } else {
+    const p=getProfile();
+    ti.textContent=p?'✏️ Edit Your Name':'👋 Welcome!';
+    su.textContent=p?'Update your staff name below':'Enter your name to track your training progress';
+    inp.value=p?p.name:'';
+    ns.style.display='block';as.style.display='none';
+    cb.style.display=p?'block':'none';
+    setTimeout(()=>inp.focus(),200);
+  }
+}
+function closeModal(){document.getElementById('modalOverlay').classList.add('hidden')}
+function buildAvatarGrid(){
+  const grid=document.getElementById('avatarGrid');
+  grid.innerHTML='';
+  const p=getProfile();
+  const cur=p?p.avatar:'';
+  ANIMALS.forEach(em=>{
+    const btn=document.createElement('div');
+    btn.className='av-opt'+(em===cur?' selected':'');
+    btn.textContent=em;
+    btn.onclick=()=>{
+      document.querySelectorAll('.av-opt').forEach(b=>b.classList.remove('selected'));
+      btn.classList.add('selected');
+      tempAvatar=em;
+    };
+    grid.appendChild(btn);
+  });
+  tempAvatar=cur;
+}
+function modalSave(){
+  if(modalMode==='avatar'){
+    if(!tempAvatar)return;
+    const p=getProfile()||{name:'Staff',joinDate:new Date().toISOString()};
+    p.avatar=tempAvatar;
+    saveProfile(p);
+    closeModal();updateProfileUI();
+  } else {
+    const v=document.getElementById('modalInput').value.trim();
+    if(!v)return;
+    const ex=getProfile();
+    const p={name:v,joinDate:ex?ex.joinDate:new Date().toISOString(),avatar:ex?ex.avatar:'🐱'};
+    saveProfile(p);closeModal();updateProfileUI();
+  }
+}
+document.getElementById('modalInput').addEventListener('keydown',e=>{if(e.key==='Enter')modalSave()});
+
+function updateProfileUI(){
+  const p=getProfile();
+  document.getElementById('profileDot').classList.toggle('show',!p);
+  if(!p)return;
+  document.getElementById('headerAvatar').textContent=p.avatar||'👤';
+  document.getElementById('staffAvatar').textContent=p.avatar||'🐱';
+  document.getElementById('staffNameDisplay').textContent=p.name;
+  const d=new Date(p.joinDate);
+  document.getElementById('staffSince').textContent='Training since '+d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+  const sessions=getSessions();
+  document.getElementById('statTotal').textContent=sessions.length;
+  if(sessions.length){
+    const best=Math.max(...sessions.map(s=>Math.round(s.score/s.total*100)));
+    const avg=Math.round(sessions.reduce((a,s)=>a+s.score/s.total*100,0)/sessions.length);
+    document.getElementById('statBest').textContent=best+'%';
+    document.getElementById('statAvg').textContent=avg+'%';
+  } else {
+    document.getElementById('statBest').textContent='—';
+    document.getElementById('statAvg').textContent='—';
+  }
+  const sl=document.getElementById('sessionList');sl.innerHTML='';
+  if(!sessions.length){sl.innerHTML='<div class="no-history">No quiz sessions yet. Take the quiz! 🎯</div>';return}
+  sessions.slice(0,20).forEach(s=>{
+    const pct=Math.round(s.score/s.total*100);
+    const cls=pct>=80?'good':pct>=50?'ok':'low';
+    const d=new Date(s.date);
+    const ds=d.toLocaleDateString('en-GB',{day:'numeric',month:'short'})+' '+d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+    const div=document.createElement('div');div.className='session-item';
+    div.innerHTML=`<div><div class="sess-date">${ds}</div><span class="sess-lang">${s.lang.toUpperCase()}</span></div><div class="sess-score ${cls}">${s.score}/${s.total} · ${pct}%</div>`;
+    sl.appendChild(div);
+  });
+}
+function clearHistory(){if(confirm('Clear all your quiz history?')){clearSessions();updateProfileUI();}}
+
+// ── LANGUAGE ──
+let currentLang='en';
+const HINTS={en:'👇 Tap any dish to flip and reveal',ar:'👇 اضغط على أي طبق للكشف',hi:'👇 किसी भी डिश पर टैप करें'};
+const START_LBL={en:'START QUIZ',ar:'ابدأ الاختبار',hi:'प्रश्नोत्तरी शुरू करें'};
+const NEXT_LBL={en:'NEXT DISH',ar:'الطبق التالي',hi:'अगली डिश'};
+const CORRECT_MSG={en:'🌟 Correct! Well done!',ar:'🌟 صحيح! أحسنت!',hi:'🌟 सही! शाबाश!'};
+const WRONG_MSG={en:'❌ Wrong — correct shown in green',ar:'❌ خطأ — الصحيحة باللون الأخضر',hi:'❌ गलत — सही उत्तर हरे रंग में'};
+
+function getName(it){return it[currentLang]||it.en}
+function getDesc(it){const k='desc'+currentLang.charAt(0).toUpperCase()+currentLang.slice(1);return it[k]||it.descEn}
+
+function setLang(lang){
+  currentLang=lang;
+  document.querySelectorAll('.lang-btn').forEach((b,i)=>b.classList.toggle('active',['en','ar','hi'][i]===lang));
+  document.getElementById('learnHint').textContent=HINTS[lang];
+  // rebuild learn with new language
+  buildLearn();
+  // update practice card
+  renderFlashcard();
+  // update quiz
+  if(qCorrect){
+    document.getElementById('qDesc').textContent=getDesc(qCorrect);
+    refreshQOpts();
+  }
+  document.getElementById('nextLabel').textContent=qCorrect?NEXT_LBL[lang]:START_LBL[lang];
+}
+
+// ── TABS ──
+function showTab(t){
+  ['learn','practice','quiz','staff'].forEach(id=>{
+    document.getElementById('panel-'+id).style.display=id===t?'block':'none';
+    document.querySelector('.tab-btn.tab-'+id).classList.toggle('active',id===t);
+  });
+  if(t==='practice')renderFlashcard();
+  if(t==='staff')updateProfileUI();
+  if(t==='quiz'&&!qCorrect){
+    document.getElementById('qDesc').textContent='';
+    document.getElementById('qFeedback').innerHTML='';
+    document.getElementById('qOpts').innerHTML='';
+    document.getElementById('nextLabel').textContent=START_LBL[currentLang];
+    document.getElementById('qNext').disabled=false;
+  }
+}
+
+// ── LEARN — 3D flip, grid layout, single language ──
+let openCardEl=null;
+function buildLearn(){
+  const grid=document.getElementById('learnGrid');
+  grid.innerHTML='';openCardEl=null;
+  catOrder.forEach(cat=>{
+    const group=items.filter(i=>i.cat===cat);
+    if(!group.length)return;
+    const sh=document.createElement('div');
+    sh.className='sec-head';
+    sh.innerHTML=`<span class="sec-icon">${catIcons[cat]}</span>${cat.toUpperCase()}`;
+    grid.appendChild(sh);
+    group.forEach(it=>grid.appendChild(makeFlipCard(it)));
+  });
+}
+
+function makeFlipCard(it){
+  const wrap=document.createElement('div');
+  wrap.className='flip-wrap';
+  const key=it.en.replace(/\s/g,'_');
+  wrap.innerHTML=`
+    <div class="flip-inner" id="fi_${key}">
+      <div class="flip-front">
+        <div class="d-name" id="fname_${key}">${getName(it)}</div>
+        <span class="flip-hint">▶ tap</span>
+      </div>
+      <div class="flip-back">
+        <div class="back-name"><span>${catIcons[it.cat]}</span><span id="bname_${key}">${getName(it)}</span></div>
+        <div class="back-desc" id="bdesc_${key}">${getDesc(it)}</div>
+        <div class="back-foot">
+          ${it.price?`<span class="back-tag back-price">💰 ${it.price}</span>`:'<span class="back-tag">Included</span>'}
+          <span class="back-tag">${it.cat}</span>
+        </div>
+      </div>
+    </div>`;
+  wrap.onclick=()=>toggleFlip(wrap,it);
+  return wrap;
+}
+
+function toggleFlip(wrap,it){
+  const isOpen=wrap.classList.contains('is-open');
+  // close previously open card
+  if(openCardEl&&openCardEl!==wrap)openCardEl.classList.remove('is-open');
+  // update language content before flipping
+  const key=it.en.replace(/\s/g,'_');
+  const fn=document.getElementById('fname_'+key);
+  const bn=document.getElementById('bname_'+key);
+  const bd=document.getElementById('bdesc_'+key);
+  if(fn)fn.textContent=getName(it);
+  if(bn)bn.textContent=getName(it);
+  if(bd)bd.textContent=getDesc(it);
+  wrap.classList.toggle('is-open',!isOpen);
+  openCardEl=isOpen?null:wrap;
+}
+
+// ── PRACTICE ──
+let pcIdx=0,pcFlipped=false;
+const shuffled=[...items].sort(()=>Math.random()-.5);
+function renderFlashcard(){
+  const it=shuffled[pcIdx];
+  document.getElementById('pcCur').textContent=pcIdx+1;
+  document.getElementById('pcTotal').textContent=shuffled.length;
+  document.getElementById('pcBar').style.width=((pcIdx+1)/shuffled.length*100)+'%';
+  document.getElementById('fcName').textContent=getName(it);
+  document.getElementById('fcBName').textContent=getName(it);
+  document.getElementById('fcBDesc').textContent=getDesc(it);
+  const pr=document.getElementById('fcBPrice');
+  if(it.price){pr.textContent='💰 '+it.price;pr.style.display='inline-block';}
+  else pr.style.display='none';
+  document.getElementById('fcCard').classList.remove('flipped');
+  pcFlipped=false;
+}
+function flipFC(){pcFlipped=!pcFlipped;document.getElementById('fcCard').classList.toggle('flipped',pcFlipped)}
+function pcNav(dir){pcIdx=(pcIdx+dir+shuffled.length)%shuffled.length;renderFlashcard()}
+
+// ── QUIZ ──
+let qScore=0, qAnswered=false, qCorrect=null, qOptions=[], qTotal=0;
+let qDeck=[], qDeckIdx=0; // shuffle-deck: guarantees every item before any repeat
+
+function shuf(a){return [...a].sort(()=>Math.random()-.5)}
+
+function buildDeck(){
+  // fresh shuffle of all items
+  qDeck = shuf(items);
+  qDeckIdx = 0;
+}
+
+function nextFromDeck(){
+  // reshuffle when deck is exhausted, ensuring no immediate repeat across boundary
+  if(qDeckIdx >= qDeck.length){
+    const last = qDeck[qDeck.length-1];
+    qDeck = shuf(items);
+    // if reshuffled deck starts with same item as last round ended, swap it to position 1
+    if(qDeck[0] === last && qDeck.length > 1){
+      [qDeck[0], qDeck[1]] = [qDeck[1], qDeck[0]];
+    }
+    qDeckIdx = 0;
+  }
+  return qDeck[qDeckIdx++];
+}
+
+function loadQuestion(){
+  if(!qDeck.length) buildDeck();
+  qCorrect = nextFromDeck();
+
+  // pick 3 wrong options that are different from correct, no duplicates
+  const others = shuf(items.filter(i=>i!==qCorrect)).slice(0,3);
+  qOptions = shuf([qCorrect, ...others]);
+
+  qAnswered = false;
+  document.getElementById('qDesc').textContent = getDesc(qCorrect);
+  document.getElementById('qFeedback').innerHTML = '';
+  document.getElementById('qNext').disabled = true;
+
+  // show progress through deck
+  const remaining = qDeck.length - qDeckIdx;
+  document.getElementById('qCount').textContent = `🍽️ ${remaining} left`;
+
+  document.getElementById('nextLabel').textContent = NEXT_LBL[currentLang];
+  renderQOpts();
+}
+
+function renderQOpts(){
+  const c=document.getElementById('qOpts'); c.innerHTML='';
+  qOptions.forEach(it=>{
+    const b=document.createElement('button'); b.className='opt';
+    b.textContent=getName(it);
+    b.onclick=()=>answerQuiz(it);
+    c.appendChild(b);
+  });
+}
+
+function refreshQOpts(){
+  document.querySelectorAll('.opt').forEach((b,i)=>{
+    if(qOptions[i]) b.textContent = getName(qOptions[i]);
+  });
+  if(qCorrect) document.getElementById('qDesc').textContent = getDesc(qCorrect);
+}
+
+function answerQuiz(chosen){
+  if(qAnswered) return;
+  qAnswered=true; qTotal++;
+  document.querySelectorAll('.opt').forEach((b,i)=>{
+    b.disabled=true;
+    if(qOptions[i]===qCorrect) b.classList.add('correct');
+    else if(qOptions[i]===chosen && chosen!==qCorrect) b.classList.add('wrong');
+  });
+  if(chosen===qCorrect){
+    qScore++;
+    document.getElementById('qScore').textContent=qScore;
+    document.getElementById('qFeedback').innerHTML=CORRECT_MSG[currentLang];
+  } else {
+    document.getElementById('qFeedback').innerHTML=WRONG_MSG[currentLang];
+  }
+  document.getElementById('qNext').disabled=false;
+  // auto-save session every 5 questions
+  if(qTotal>0 && qTotal%5===0){
+    const p=getProfile();
+    if(p) addSession({date:new Date().toISOString(),score:qScore,total:qTotal,lang:currentLang});
+  }
+}
+
+function resetQuiz(){
+  if(qTotal>0){const p=getProfile();if(p)addSession({date:new Date().toISOString(),score:qScore,total:qTotal,lang:currentLang});}
+  qScore=0; qAnswered=false; qCorrect=null; qTotal=0;
+  buildDeck(); // fresh deck on reset
+  document.getElementById('qScore').textContent=0;
+  document.getElementById('qCount').textContent=`🍽️ ${items.length} left`;
+  document.getElementById('qDesc').textContent='';
+  document.getElementById('qOpts').innerHTML='';
+  document.getElementById('qFeedback').innerHTML='';
+  document.getElementById('nextLabel').textContent=START_LBL[currentLang];
+  document.getElementById('qNext').disabled=false;
+}
+
+// ── PWA ──
+(function(){
+  const sz=512,cv=document.createElement('canvas');cv.width=sz;cv.height=sz;
+  const x=cv.getContext('2d'),rr=110;
+  x.beginPath();x.moveTo(rr,0);x.lineTo(sz-rr,0);x.arcTo(sz,0,sz,rr,rr);x.lineTo(sz,sz-rr);x.arcTo(sz,sz,sz-rr,sz,rr);x.lineTo(rr,sz);x.arcTo(0,sz,0,sz-rr,rr);x.lineTo(0,rr);x.arcTo(0,0,rr,0,rr);x.closePath();
+  x.fillStyle='#0b0820';x.fill();
+  const cg=x.createRadialGradient(180,190,10,210,260,210);
+  cg.addColorStop(0,'#FFE87C');cg.addColorStop(.3,'#F0C030');cg.addColorStop(.65,'#C47A10');cg.addColorStop(1,'#7A4800');
+  x.save();x.beginPath();x.arc(205,262,196,0,Math.PI*2);x.fillStyle=cg;x.fill();
+  x.globalCompositeOperation='destination-out';x.beginPath();x.arc(278,246,152,0,Math.PI*2);x.fillStyle='rgba(0,0,0,1)';x.fill();x.restore();
+  x.save();const hg=x.createLinearGradient(90,90,280,180);hg.addColorStop(0,'rgba(255,255,220,.5)');hg.addColorStop(1,'rgba(255,255,220,0)');
+  x.globalCompositeOperation='source-atop';x.beginPath();x.arc(205,262,196,0,Math.PI*2);x.fillStyle=hg;x.fill();x.restore();
+  const lg=x.createRadialGradient(320,175,5,320,290,185);lg.addColorStop(0,'#FFF0A0');lg.addColorStop(.4,'#F0C030');lg.addColorStop(1,'#8B5500');
+  x.fillStyle=lg;x.shadowColor='rgba(0,0,0,.7)';x.shadowBlur=12;x.shadowOffsetY=6;x.textAlign='center';
+  x.font='900 120px "Arial Black",Arial,sans-serif';x.fillText('S',325,248);
+  x.font='900 138px "Arial Black",Arial,sans-serif';x.fillText('G',325,400);
+  const url=cv.toDataURL('image/png');
+  const al=document.createElement('link');al.rel='apple-touch-icon';al.href=url;document.head.appendChild(al);
+  const fl=document.createElement('link');fl.rel='icon';fl.type='image/png';fl.href=url;document.head.appendChild(fl);
+  const mf={name:'Somewhere · Ramadan Training',short_name:'Somewhere',start_url:'/',scope:'/',display:'standalone',background_color:'#0b0820',theme_color:'#0b0820',orientation:'portrait-primary',icons:[{src:url,sizes:'512x512',type:'image/png',purpose:'any maskable'}]};
+  const mb=new Blob([JSON.stringify(mf)],{type:'application/manifest+json'});
+  const ml=document.createElement('link');ml.rel='manifest';ml.href=URL.createObjectURL(mb);document.head.appendChild(ml);
+  if('serviceWorker' in navigator)navigator.serviceWorker.register('/sw.js',{scope:'/'}).catch(()=>{});
+})();
+
+// ── INIT ──
+buildLearn();
+buildDeck(); // initialise quiz deck on load
+const _p=getProfile();
+if(!_p)setTimeout(()=>openModal('profile'),800);
+else updateProfileUI();
+</script>
+</body>
+</html>
